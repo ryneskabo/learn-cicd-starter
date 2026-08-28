@@ -1,14 +1,14 @@
 package auth
 
 import (
-	"testing"
 	"net/http"
+	"testing"
 )
 
 func TestGetAPIKeyShouldWork(t *testing.T) {
 	header := http.Header{}
 	header.Add("Authorization", "ApiKey fkjaldjf876564hjdfsh")
-	apiKey, err := GetAPIKey(header);
+	apiKey, err := GetAPIKey(header)
 	if err != nil {
 		t.Fatalf("GetAPIKey function did not parse")
 	}
@@ -20,7 +20,7 @@ func TestGetAPIKeyShouldWork(t *testing.T) {
 func TestGetAPIKeyShouldNotWork(t *testing.T) {
 	header := http.Header{}
 	header.Add("Authorization", "NotAnAPIKEY fjdkjfk898")
-	apiKey, err := GetAPIKey(header);
+	apiKey, err := GetAPIKey(header)
 	if err == nil {
 		t.Fatalf("Did not return error like it should")
 	}
@@ -32,7 +32,7 @@ func TestGetAPIKeyShouldNotWork(t *testing.T) {
 func TestGetAPIKeyShouldNotWorkInvalidFormat(t *testing.T) {
 	header := http.Header{}
 	header.Add("Authorization", "ApiKey")
-	apiKey, err := GetAPIKey(header);
+	apiKey, err := GetAPIKey(header)
 	if err == nil {
 		t.Fatalf("Did not return error like it should")
 	}
@@ -40,4 +40,3 @@ func TestGetAPIKeyShouldNotWorkInvalidFormat(t *testing.T) {
 		t.Fatalf("Parsed key that isn't there")
 	}
 }
-
