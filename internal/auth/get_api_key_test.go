@@ -19,6 +19,7 @@ func TestGetAPIKeyShouldWork(t *testing.T) {
 
 func TestGetAPIKeyShouldNotWork(t *testing.T) {
 	header := http.Header{}
+	header.Add("Authorization", "NotAnAPIKEY fjdkjfk898")
 	apiKey, err := GetAPIKey(header);
 	if err == nil {
 		t.Fatalf("Did not return error like it should")
